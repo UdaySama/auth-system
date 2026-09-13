@@ -1,0 +1,186 @@
+/* ============================================
+   Reset & Base
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  padding: 20px;
+}
+
+/* ============================================
+   Card
+   ============================================ */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card__title {
+  font-size: 1.5rem;
+  color: #1e3c72;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.card__subtitle {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 26px;
+}
+
+/* ============================================
+   Menu
+   ============================================ */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 2px solid #dfe3e8;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #fafbfc;
+  transition: all 0.2s ease;
+}
+
+.menu__item:hover {
+  border-color: #2a5298;
+  background: #f0f5ff;
+  transform: translateX(4px);
+}
+
+.menu__item.selected {
+  border-color: #2a5298;
+  background: #e8f0ff;
+  box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.12);
+}
+
+.menu__num {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.menu__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__label {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.menu__desc {
+  font-size: 0.78rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ============================================
+   Input Field
+   ============================================ */
+.field {
+  margin-top: 22px;
+  margin-bottom: 18px;
+}
+
+.field__label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.field__input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid #dfe3e8;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field__input:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.15);
+}
+
+.field__input.error {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.15);
+}
+
+.field__error {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  min-height: 16px;
+  display: none;
+}
+
+.field__error.show {
+  display: block;
+}
+
+/* ============================================
+   Button
+   ============================================ */
+.btn {
+  width: 100%;
+  padding: 13px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(30, 60, 114, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
