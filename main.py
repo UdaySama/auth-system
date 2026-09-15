@@ -33,6 +33,40 @@ def option_choose(choices,message,error_Msg):
             print(error_Msg)
     return choice 
 
+def register():
+    username = get_input("Entre Username:- ", "Please enter a username")
+    password = get_input("Entre Password:- ", "Please enter a Password")
+    user ={
+        "username":username,
+        "password":password
+    }
+    return user
+
+
+def login(user):
+    username = get_input("Entre Username:- ", "Please enter a username")
+    password = get_input("Entre Password:- ", "Please enter a Password")
+    if username == user["username"] and password == user["password"]:
+
+        return True
+    else:
+        return False
+
+def change_password(user):
+    oldPwd=get_input(
+         "Entre your old password:- ",
+        "Please enter an old password"
+    )
+    if oldPwd == user["password"]:
+        print("Old password is correct")
+        newPwd=get_input("Entre YOur new Password:- ","Please enter a new Passwrord")
+        user["password"] = newPwd
+        print("Password changed successfully")
+        return True
+    else:
+        print("Wrong Password")
+        return False
+
 
 def show_menu():
     if logged_in:
@@ -48,65 +82,56 @@ def show_menu():
                 3. Exit
             """)
 
+def logged_in_menu(user):
+     while True:
+        show_menu()
+        option =  option_choose([1,2,3],"Enter choice:- ","Please enter a valid choice")
+        if option == 1:
+            print("Home")
+        elif option == 2:
+            change_password(user)
+        elif option == 3:
+            logged_in = False
+            break 
+
+
 while True:
     print("========== AUTH APP ==========")
     show_menu()
-
     print("==============================")
-
-    # try:
-    # choice=int(input("Enter choice:- "))
-    # choice = get_Int("Enter choice:- ","Please enter a number")  # this is right ok
     choice = option_choose([1,2,3],"Enter choice:- ","Please enter a valid choice")  # this is right ok
-
     if choice == 1:
         if registered:
             print("user already registered")
         else:
-            username = get_input("Entre Username:- ","Please enter a username")
-            password = get_input("Entre Password:- ","Please enter a Password")
-            user = {
-             "username" :username,
-             "password":password
-            }
+            user = register()
             registered = True
-            print("Welcome, ",username)
+            print("Welcome, ",user["username"])
             print("Registration Successful!")
     elif choice == 2:
         if registered:
-            username = get_input("Entre Username:- ","Please enter a username")
-            password = get_input("Entre Password:- ","Please enter a Password")
-            
-            if username == user["username"] and password == user["password"]:
+            result = login(user)
+            if result :
                 print(f"""
                     Login successful!
-                    Welcome, {username}
+                    Welcome, {user["username"]}
                 """)
                 logged_in = True
-                while True:
-                    show_menu()
-                    option =  option_choose([1,2,3],"Enter choice:- ","Please enter a valid choice")
-                    if option == 1:
-                        print("Home")
-                    elif option == 2:
-                        oldPwd = get_input("Entre your old password:- ","Please enter an old password")
-                        if oldPwd == user["password"]:
-                            newPwd =  get_input("Entre your new password:- ","Please enter an new password")
-                            user["password"]=newPwd
-                            print("Password changed successfully")
-                            print("Home")
-                        else:
-                            print("Wrong Password") 
-                    elif option == 3:
-                        logged_in = False
-                        break  
+                # Logged-in user menu
+                # while True:
+                #     show_menu()
+                #     option =  option_choose([1,2,3],"Enter choice:- ","Please enter a valid choice")
+                #     if option == 1:
+                #         print("Home")
+                #     elif option == 2:
+                #         change_password(user)
+                #     elif option == 3:
+                #         logged_in = False
+                #         break  
             else:
                     print("wrong credentials")
-            
         else:
             print( "Please register first")
     elif choice == 3:
         print("Goodbye!")
         break
-    # else:
-    #  print("Invalid choice!")
